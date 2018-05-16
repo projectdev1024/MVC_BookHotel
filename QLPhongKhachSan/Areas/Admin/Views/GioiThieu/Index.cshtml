@@ -1,0 +1,59 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.GioiThieu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnh2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnh3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThuTu)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                <img src="@item.HinhAnh" alt="Alternate Text" />
+            </td>
+            <td>
+                <img src="@item.HinhAnh2" alt="Alternate Text" />
+            </td>
+            <td>
+                <img src="@item.HinhAnh3" alt="Alternate Text" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThuTu)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit",new { id = item.IDGioiThieu})" class="btn btn-primary" title="Sửa"><i class="fa fa-pencil"></i></a>
+                <span onclick="delete_obj(this,'@item.IDGioiThieu')" class="btn btn-warning" title="Xóa"><i class="fa fa-remove"></i></span>
+            </td>
+        </tr>
+    }
+
+</table>

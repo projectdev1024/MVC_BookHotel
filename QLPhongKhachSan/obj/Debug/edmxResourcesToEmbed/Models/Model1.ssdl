@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPhongKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DatPhong">
+    <Key>
+      <PropertyRef Name="IDDatPhong" />
+    </Key>
+    <Property Name="IDDatPhong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TuNgay" Type="date" />
+    <Property Name="DenNgay" Type="date" />
+    <Property Name="IDPhong" Type="int" />
+    <Property Name="SoNgay" Type="int" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoNguoi" Type="int" />
+    <Property Name="Vetify" Type="nvarchar" MaxLength="50" />
+    <Property Name="HSD" Type="datetime" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="XuLiLuc" Type="datetime" />
+    <Property Name="NguoiXuLi" Type="int" />
+  </EntityType>
+  <EntityType Name="DichVu">
+    <Key>
+      <PropertyRef Name="IDDichVu" />
+    </Key>
+    <Property Name="IDDichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDichVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Delete" Type="bit" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="3000" />
+    <Property Name="GiaTien" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="GiaPhong">
+    <Key>
+      <PropertyRef Name="IDGiaPhong" />
+    </Key>
+    <Property Name="IDGiaPhong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPhong" Type="int" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiaDem" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="CuoiTuan" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Tuan" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Thang" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="NgayLe" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="GioiThieu">
+    <Key>
+      <PropertyRef Name="IDGioiThieu" />
+    </Key>
+    <Property Name="IDGioiThieu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
+    <Property Name="HinhAnh" Type="nvarchar" MaxLength="500" />
+    <Property Name="HinhAnh2" Type="nvarchar" MaxLength="500" />
+    <Property Name="HinhAnh3" Type="nvarchar" MaxLength="500" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="ThuTu" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="ImagePhong">
+    <Key>
+      <PropertyRef Name="IDImageHome" />
+    </Key>
+    <Property Name="IDImageHome" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rank" Type="tinyint" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="IDPhong" Type="int" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Phong">
+    <Key>
+      <PropertyRef Name="IDPhong" />
+    </Key>
+    <Property Name="IDPhong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPhong" Type="nvarchar" MaxLength="50" />
+    <Property Name="TomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Anh" Type="nvarchar" MaxLength="500" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Delete" Type="bit" />
+    <Property Name="GiaCoBan" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SoNguoiToiDa" Type="int" />
+    <Property Name="DienTich" Type="float" />
+    <Property Name="KhungCanh" Type="nvarchar" MaxLength="50" />
+    <Property Name="Giuong" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SuKien">
+    <Key>
+      <PropertyRef Name="IDSuKien" />
+    </Key>
+    <Property Name="IDSuKien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnhNen" Type="nvarchar" MaxLength="500" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="NgayToChuc" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="IDTaiKhoan" />
+    </Key>
+    <Property Name="IDTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="POSITION" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_DatPhong_Phong">
+    <End Role="Phong" Type="Self.Phong" Multiplicity="0..1" />
+    <End Role="DatPhong" Type="Self.DatPhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="IDPhong" />
+      </Principal>
+      <Dependent Role="DatPhong">
+        <PropertyRef Name="IDPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DatPhong_TaiKhoan">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+    <End Role="DatPhong" Type="Self.DatPhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="IDTaiKhoan" />
+      </Principal>
+      <Dependent Role="DatPhong">
+        <PropertyRef Name="NguoiXuLi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GiaPhong_Phong">
+    <End Role="Phong" Type="Self.Phong" Multiplicity="0..1" />
+    <End Role="GiaPhong" Type="Self.GiaPhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="IDPhong" />
+      </Principal>
+      <Dependent Role="GiaPhong">
+        <PropertyRef Name="IDPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImagePhong_Phong">
+    <End Role="Phong" Type="Self.Phong" Multiplicity="0..1" />
+    <End Role="ImagePhong" Type="Self.ImagePhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="IDPhong" />
+      </Principal>
+      <Dependent Role="ImagePhong">
+        <PropertyRef Name="IDPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLPhongKSModelStoreContainer">
+    <EntitySet Name="DatPhong" EntityType="Self.DatPhong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GiaPhong" EntityType="Self.GiaPhong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GioiThieu" EntityType="Self.GioiThieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImagePhong" EntityType="Self.ImagePhong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phong" EntityType="Self.Phong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SuKien" EntityType="Self.SuKien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DatPhong_Phong" Association="Self.FK_DatPhong_Phong">
+      <End Role="Phong" EntitySet="Phong" />
+      <End Role="DatPhong" EntitySet="DatPhong" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DatPhong_TaiKhoan" Association="Self.FK_DatPhong_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="DatPhong" EntitySet="DatPhong" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GiaPhong_Phong" Association="Self.FK_GiaPhong_Phong">
+      <End Role="Phong" EntitySet="Phong" />
+      <End Role="GiaPhong" EntitySet="GiaPhong" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImagePhong_Phong" Association="Self.FK_ImagePhong_Phong">
+      <End Role="Phong" EntitySet="Phong" />
+      <End Role="ImagePhong" EntitySet="ImagePhong" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

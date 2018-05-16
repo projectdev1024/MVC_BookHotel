@@ -1,0 +1,66 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.GiaPhong>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaDem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CuoiTuan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tuan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayLe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phong.TenPhong)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaDem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CuoiTuan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tuan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayLe)
+            </td>
+            <td>
+                <active onclick="activegp('@item.IDGiaPhong')" class="@item.Active.ToString()"></active>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phong.TenPhong)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","GiaPhong",new { id = item.IDGiaPhong})" class="btn btn-primary" title="Sửa"><i class="fa fa-pencil"></i></a>
+                <span onclick="delete_objgp(this,'@item.IDGiaPhong')" class="btn btn-warning" title="Xóa"><i class="fa fa-remove"></i></span>
+            </td>
+        </tr>
+    }
+
+</table>

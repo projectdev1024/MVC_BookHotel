@@ -1,0 +1,162 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.Phong>
+
+@{
+    ViewBag.Title = "DANH SÁCH PHÒNG";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<table class="table table-bordered table-striped" style="background-color: floralwhite">
+    <tr>
+        <th>
+            Active | Phòng
+        </th>
+        <th>
+            Ảnh
+        </th>
+        <th>
+            Giá phòng
+        </th>
+        <th>
+            Số người tối đa
+        </th>
+        <th>
+            Diện tích
+        </th>
+        <th>
+            Tầm nhìn
+        </th>
+        <th>
+            Giường
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr data-view="@item.IDPhong">
+            <td rowspan="3">
+                <p><active onclick="active('@item.IDPhong')" class="@item.Active.ToString()"></active> @Html.DisplayFor(modelItem => item.TenPhong)</p>
+                <span onclick="view(this)" class="btn btn-default" title="Xóa"><i class="fa fa-eye"></i></span>
+                <a href="@Url.Action("Edit",new { id = item.IDPhong})" class="btn btn-primary" title="Sửa"><i class="fa fa-pencil"></i></a>
+                <span onclick="delete_obj(this,'@item.IDPhong')" class="btn btn-warning" title="Xóa"><i class="fa fa-remove"></i></span>
+            </td>
+            <td>
+                <img src="@item.Anh" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaCoBan) / Ngày
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoNguoiToiDa) người
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienTich) m2
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhungCanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Giuong)
+            </td>
+        </tr>
+        <tr class="@item.IDPhong">
+            <td colspan="6" style="background-color: aliceblue; display: none;">
+                <p><h3>Giá phòng <a href="@Url.Action("Edit","GiaPhong",new { item.IDPhong})" class="btn btn-primary">Thêm mới</a></h3></p>
+                @Html.Partial("Index_GiaPhong", item.GiaPhongs)
+            </td>
+        </tr>
+        <tr class="@item.IDPhong">
+            <td colspan="6" style="background-color: burlywood; display: none;">
+                <p><h3>Hình ảnh <a href="@Url.Action("Edit","ImagePhong",new { item.IDPhong})" class="btn btn-primary">Thêm mới</a></h3> </p>
+                @Html.Partial("Index_ImagePhong", item.ImagePhongs)
+            </td>
+        </tr>
+    }
+</table>
+
+
+<script>
+    function view(sender) {
+        let tr = $(sender).closest('tr');
+        tr.siblings('.' + tr.data('view')).children('td').toggle();
+    }
+
+    function activegp(id) {
+        if (confirm("Bạn có muốn thay đổi trạng thái?")) {
+            $.ajax({
+                url : '@Url.Action("Active", "GiaPhong")',
+                type : 'POST',
+                data: { id: id },
+                success: function (d) {
+                    if (d) {
+                        window.location.reload();
+                    } else {
+                        alert("Thất bại!");
+                    }
+                },
+                error: function () {
+                    alert("Thất bại, có lỗi xảy ra!");
+                }
+            })
+        }
+    }
+
+    function delete_objgp(sender,id) {
+        if (confirm("Bạn có muốn xóa?")) {
+            $.ajax({
+                url : '@Url.Action("Delete", "GiaPhong")',
+                type : 'POST',
+                data: { id: id },
+                success: function (d) {
+                    if (d) {
+                        $(sender).closest('tr').remove();
+                    } else {
+                        alert("Xóa thất bại!");
+                    }
+                },
+                error: function () {
+                    alert("Xóa thất bại, có lỗi xảy ra!");
+                }
+            })
+        }
+    }
+
+        function active_image(id) {
+        if (confirm("Bạn có muốn thay đổi trạng thái?")) {
+            $.ajax({
+                url : '@Url.Action("Active","ImagePhong")',
+                type : 'POST',
+                data: { id: id },
+                success: function (d) {
+                    if (d) {
+                        window.location.reload();
+                    } else {
+                        alert("Thất bại!");
+                    }
+                },
+                error: function () {
+                    alert("Thất bại, có lỗi xảy ra!");
+                }
+            })
+        }
+    }
+
+        function delete_image(sender,id) {
+        if (confirm("Bạn có muốn xóa?")) {
+            $.ajax({
+                url : '@Url.Action("Delete", "ImagePhong")',
+                type : 'POST',
+                data: { id: id },
+                success: function (d) {
+                    if (d) {
+                        $(sender).closest('tr').remove();
+                    } else {
+                        alert("Xóa thất bại!");
+                    }
+                },
+                error: function () {
+                    alert("Xóa thất bại, có lỗi xảy ra!");
+                }
+            })
+        }
+    }
+</script>

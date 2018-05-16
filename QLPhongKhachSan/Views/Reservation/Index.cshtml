@@ -1,0 +1,108 @@
+﻿@model QLPhongKhachSan.Models.DatPhong
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner-tems text-center">
+    <div class="container">
+        <div class="banner-content">
+            <h2>ĐẶT PHÒNG</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing</p>
+        </div>
+    </div>
+</section>
+@using (Ajax.BeginForm("Step2", new AjaxOptions()))
+{
+    <!-- RESERVATION -->
+    <section class="section-reservation-page">
+        <div class="container">
+            <div class="reservation-page">
+                <!-- STEP -->
+                <div class="reservation_step">
+                    <ul>
+                        <li class="active"><a href="@Url.Action("Index")"><span>1.</span>  CHỌN PHÒNG</a></li>
+                        <li><a href="#"><span>2.</span> THÔNG TIN LIÊN HỆ</a></li>
+                        <li><a href="#"><span>3.</span> XÁC MINH EMAIL</a></li>
+                    </ul>
+                </div>
+                <!-- END / STEP -->
+                <div class="row">
+                    <!--  SIDEBAR -->
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <!-- WIDGET CHECK AVAILABILITY -->
+                            <div class="widget widget_check_availability">
+                                <h4 class="widget-title">THÔNG TIN ĐẶT PHÒNG</h4>
+                                <div class="check_availability">
+                                    @Html.Partial("Step1", Model)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  END/SIDEBAR -->
+                    <!-- CONTENT -->
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="reservation_content">
+                            <!-- RESERVATION ROOM -->
+                            <div class="reservation-room">
+                                @Html.Action("BookRoom", "Phong")
+                                <div class="reservation-room_item">
+                                    <div class="reservation-room_package">
+                                        <a data-toggle="collapse" href="#reservation-room_package-1" class="reservation-room_package-more collapsed">DỊCH VỤ</a>
+                                        <div class="reservation-room_package-content collapse" id="reservation-room_package-1">
+                                            @Html.Action("Index", "DichVu")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END / RESERVATION ROOM -->
+                        </div>
+                    </div>
+                    <!-- END / CONTENT -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END / RESERVATION -->
+}
+    <script>
+    $('form').submit(function (event) {
+        var oke = true;
+        $('#error').empty();
+
+        var tuNgay = getDate($('#@(nameof(Model.TuNgay))').val());
+        if ( tuNgay < new Date() ){
+            addError("Vui lòng nhập ngày đến hợp lệ");
+            oke = false;
+        }
+
+        var denNgay = getDate($('#@(nameof(Model.DenNgay))').val()) ;
+        if (denNgay < new Date() || denNgay <= tuNgay){
+            addError("Vui lòng nhập ngày đi hợp lệ");
+            oke = false;
+        }
+
+        let soNguoi = Number($('#@nameof(Model.SoNguoi)').val());
+        if (soNguoi <= 0) {
+            addError("Vui lòng nhập số người hợp lệ");
+            oke = false;
+        }
+
+        if (oke == false) event.preventDefault();
+    })
+
+        function addError(s) {
+            $('#error').append(`<li>${s}</li>`)
+        }
+
+
+    function getDate(s) {
+        var k = s.split('-');
+        if (k.length > 2) {
+            return new Date(Number(k[2]), Number(k[1]) - 1, Number(k[0]));
+        }
+       throw Error("format date error: "+s);
+    }
+    </script>

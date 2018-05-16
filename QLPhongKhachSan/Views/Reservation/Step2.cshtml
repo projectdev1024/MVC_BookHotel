@@ -1,0 +1,220 @@
+﻿@model QLPhongKhachSan.Models.DatPhong
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner-tems text-center">
+    <div class="container">
+        <div class="banner-content">
+            <h2>RESERVATION</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing</p>
+        </div>
+    </div>
+</section>
+
+@using (Ajax.BeginForm("GoFinish", new AjaxOptions()))
+{
+    @Html.HiddenFor(q => q.DenNgay)
+    @Html.HiddenFor(q => q.TuNgay)
+    @Html.HiddenFor(q => q.SoNgay)
+    @Html.HiddenFor(q => q.SoNguoi)
+    @Html.HiddenFor(q => q.IDPhong)
+    <!-- RESERVATION -->
+    <section class="section-reservation-page ">
+        <div class="container">
+            <div class="reservation-page">
+                <!-- STEP -->
+                <div class="reservation_step">
+                    <ul>
+                        <li><a href="@Url.Action("Index")"><span>1.</span>  CHỌN PHÒNG</a></li>
+                        <li class="active"><a href="#"><span>2.</span> THÔNG TIN LIÊN HỆ</a></li>
+                        <li><a href="#"><span>3.</span> XÁC MINH EMAIL</a></li>
+                    </ul>
+                </div>
+                <!-- END / STEP -->
+                <div class="row">
+                    <!-- SIDEBAR -->
+                    <div class="col-md-4 col-lg-3">
+                        <div class="reservation-sidebar">
+                            <!-- RESERVATION DATE -->
+                            <div class="reservation-date">
+                                <!-- HEADING -->
+                                <h2 class="reservation-heading">Thời gian</h2>
+                                <!-- END / HEADING -->
+                                <ul>
+                                    <li>
+                                        <span>Ngày đến</span>
+                                        <span>@(Model.TuNgay?.ToString("dd/MM/yyyy"))</span>
+                                    </li>
+                                    <li>
+                                        <span>Ngày đi</span>
+                                        <span>@(Model.DenNgay?.ToString("dd/MM/yyyy"))</span>
+                                    </li>
+                                    <li>
+                                        <span>Số ngày</span>
+                                        <span>@(Model.SoNgay?.ToString("#,###"))</span>
+                                    </li>
+                                    <li>
+                                        <span>Số người</span>
+                                        <span>@Model.SoNguoi</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- END / RESERVATION DATE -->
+                            <!-- ROOM SELECT -->
+                            <div class="reservation-room-selected selected-4 ">
+                                <!-- HEADING -->
+                                <h2 class="reservation-heading">giá phòng</h2>
+                                <!-- END / HEADING -->
+                                <!-- ITEM -->
+                                <div class="reservation-room-seleted_item">
+                                    <div class="reservation-room-seleted_name has-package">
+                                        <h2><a href="#">@Model.Phong.TenPhong</a></h2>
+                                    </div>
+                                    @foreach (var item in Model.Phong.GiaPhongs)
+                                    {
+                                        <div class="reservation-room-seleted_package">
+                                            <h6>
+                                                <label>
+                                                    @item.TenLoai
+                                                </label>
+                                            </h6>
+                                            <ul>
+                                                <li>
+                                                    <span>Ngày thường</span>
+                                                    <span>@(item.GiaDem?.ToString("#,###"))</span>
+                                                </li>
+                                                <li>
+                                                    <span>Thứ 7 - CN</span>
+                                                    <span>@(item.CuoiTuan?.ToString("#,###"))</span>
+                                                </li>
+                                                <li>
+                                                    <span>Tuần</span>
+                                                    <span>@(item.Tuan?.ToString("#,###"))</span>
+                                                </li>
+                                                <li>
+                                                    <span>Tháng</span>
+                                                    <span>@(item.Thang?.ToString("#,###"))</span>
+                                                </li>
+                                                <li>
+                                                    <span>Ngày lễ</span>
+                                                    <span>@(item.NgayLe?.ToString("#,###"))</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    }
+                                </div>
+                                <!-- END / ITEM -->
+                                <!-- TOTAL -->
+                                <div class="reservation-room-seleted_total ">
+                                    @*<label>TOTAL</label>
+                                        <span class="reservation-total">$1000.00</span>*@
+                                    <label>
+                                        TRÂN TRỌNG CẢM ƠN
+                                    </label>
+                                </div>
+                                <!-- END / TOTAL -->
+                            </div>
+                            <!-- END / ROOM SELECT -->
+                        </div>
+                    </div>
+                    <!-- END / SIDEBAR -->
+                    <!-- CONTENT -->
+                    <div class="col-md-8 col-lg-9">
+                        <div class="reservation_content">
+                            <div class="reservation-billing-detail">
+                                <h4>THÔNG TIN LIÊN HỆ</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Họ<sup> *</sup></label>
+                                        <input required name="firstName" type="text" placeholder="Họ" class="input-text">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Tên<sup> *</sup></label>
+                                        <input required name="lastName" type="text" placeholder="Tên" class="input-text">
+                                    </div>
+                                </div>
+                                <label>Địa chỉ<sup> *</sup></label>
+                                @Html.TextBoxFor(q => q.DiaChi, new { @class = "input-text", placeholder = "Địa chỉ", required = "true" })
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Email <sup> *</sup></label>
+                                        @Html.TextBoxFor(q => q.Email, new { type = "email", @class = "input-text", placeholder = "Email xác nhận", required = "true" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Điện thoại<sup> *</sup></label>
+                                        @Html.TextBoxFor(q => q.SDT, new { type = "tel", @class = "input-text", placeholder = "Số điện thoại xác nhận", required = "true" })
+                                    </div>
+                                </div>
+                                @*<p class="reservation-code">
+                                        HÌNH THỨC THANH TOÁN
+                                    </p>
+                                    <ul class="option-bank">
+                                        <li>
+                                            <a href="https://www.baokim.vn/payment/product/version11?business=tiephoang.dev%40gmail.com&product_name=123&product_price=123000&product_quantity=2&total_amount=246000">
+                                                <img src="https://www.baokim.vn/cdn/x_developer/module/baokim_btn/thanhtoan-l.png" alt="Thanh toán an toàn với Bảo Kim !" border="0" title="Thanh toán trực tuyến an toàn dùng tài khoản Ngân hàng (VietcomBank, TechcomBank, Đông Á, VietinBank, Quân Đội, VIB, SHB,... và thẻ Quốc tế (Visa, Master Card...) qua Cổng thanh toán trực tuyến BảoKim.vn">
+                                            </a>
+                                            <label class="label-radio">
+                                                <input type="radio" class="input-radio" name="chose-bank"> Direct Bank Transfer
+                                            </label>
+                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                        </li>
+                                        <li>
+                                            <label class="label-radio">
+                                                <input type="radio" class="input-radio" name="chose-bank"> Cheque Payment
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="label-radio">
+                                                <input type="radio" class="input-radio" name="chose-bank"> Credit Card
+                                            </label>
+                                            <a href="#" title=""><img src="/images/Reservation/american.jpg" alt="#"></a>
+                                            <a href="#" title=""><img src="/images/Reservation/mastercard.jpg" alt="#"> </a>
+                                            <a href="#" title=""><img src="/images/Reservation/o.jpg" alt="#"></a>
+                                            <a href="#" title=""><img src="/images/Reservation/paypal.jpg" alt="#"></a>
+                                            <a href="#" title=""><img src="/images/Reservation/visa.jpg" alt="#"></a>
+                                            <a href="#" title=""><img src="/images/Reservation/2co.jpg" alt="#"></a>
+                                        </li>
+                                    </ul>*@
+                                <p class="error"><ol id="error"></ol></p>
+                                <button class="btn btn-room btn4">HOÀN TẤT</button>
+                                <p>
+                                    <ul>
+                                        <li><i>Sau khi đăng kí, bạn sẽ phải xác minh đặt phòng bằng email.</i></li>
+                                        <li><i>Sau khi xác minh thành công, nhân viên chúng tôi sẽ liên hệ với bạn để lấy thông tin chi tiết.</i></li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / CONTENT -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END / RESERVATION -->
+}
+
+<script>
+    $('#form0').submit(function (e) {
+        var oke = true;
+        $('#error').empty();
+
+        var sdt = $('#@nameof(Model.SDT)').val();
+        if (/^\d{10,11}$/.test(sdt) == false) {
+            addError("Vui lòng nhập Số điện thoại từ 10-11 số.");
+            oke = false;
+        }
+
+        if (oke == false) {
+            e.preventDefault();
+        }
+    })
+
+    function addError(s) {
+        $('#error').append(`<li>${s}</li>`)
+    }
+</script>

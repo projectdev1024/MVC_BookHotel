@@ -1,0 +1,146 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.Phong>
+
+@{
+    Layout = "~/Views/Shared/_LayoutSlider.cshtml";
+}
+
+<!-- OUR-ROOMS-->
+<section class="rooms">
+    <div class="container">
+        <h2 class="title-room">Our Rooms</h2>
+        <div class="outline"></div>
+        <p class="rooms-p">When you host a party or family reunion, the special celebrations let you streng then bonds with</p>
+        <div class="wrap-rooms">
+            <div class="row">
+                <div id="rooms" class="owl-carousel owl-theme">
+                    @for (int i = 0; i < Math.Ceiling((decimal)(Model?.Count() ?? 0 / 6)); i++)
+                    {
+                        <div class="item ">
+                            @foreach (var item in Model.Skip(i * 6).Take(6))
+                            {
+                                <a href="@Url.Action("Detail","Phong",new { item.IDPhong })">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                                        <div class="wrap-box">
+                                            <div class="box-img">
+                                                <img src="@item.Anh" class="img-responsive">
+                                            </div>
+                                            <div class="rooms-content">
+                                                <h4 class="sky-h4">@item.TenPhong</h4>
+                                                <p class="price">@item.GiaCoBan / Ngày</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</section>
+<!-- END / ROOMS -->
+@Html.Action("PartialAbout")
+<!-- BEST -->
+<section class="best">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-1.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">Master Bedrooms</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-2.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">Sea View Balcony</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-3.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">Pool & Spa</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-4.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">Wifi Coverage</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-5.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">AwESOME pACKAGES</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-6.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">cLEANING eVERDAY</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-7.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">bUTFFET Breakfast</h6>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrap-best">
+                    <div class="icon-best">
+                        <img src="/sky_files//about-icon-8.png" class="img-responsive" alt="Image">
+                    </div>
+                    <h6 class="sky-h6">Airport Taxi</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END / BEST -->
+<!-- TESTIMONOALS -->
+<section class="testimonials">
+    <div class="testimonials-h">
+        <div class="testimonials-content">
+            <div class="container">
+                <div id="testimonials" class="owl-carousel owl-theme">
+                    <div class="item ">
+                        <div class="img-testimonials"><img src="/sky_files//about-testimonials-img.png" alt="#"></div>
+                        <p class="testimonials-p"><span>“</span>​‌ This is the only place to stay in Catalina! I have stayed in the cheaper hotels and they were fine, but this is just the icing on the cake! After spending the day bike riding and hiking to come back and enjoy a glass of wine while looking out your <span>​‌​‌”</span> ocean view window and then to top it all off...</p>
+                        <h5 class="sky-h5">JULIA ROSE</h5>
+                        <p class="testimonials-p1">From Los Angeles, California</p>
+                    </div>
+                    <div class="item">
+                        <div class="img-testimonials"><img src="/sky_files//about-testimonials-img.png" alt="#"></div>
+                        <p class="testimonials-p"><span>“</span>​‌ Thisis the only place to stay in Catalina! I have stayed in the cheaper hotels and they were fine, but this is just the icing onthe cake! After spending the day bike riding and hiking to come back and enjoy a glass of wine while looking out your <span>​‌​‌”</span> ocean view window and then to top it all off...</p>
+                        <h5 class="sky-h5">JULIA ROSE</h5>
+                        <p class="testimonials-p1">From Los Angeles, California</p>
+                    </div>
+                    <div class="item">
+                        <div class="img-testimonials"><img src="/sky_files//about-testimonials-img.png" alt="#"></div>
+                        <p class="testimonials-p"><span>“</span>​‌ This is the only place to stay in Catalina! I have stayed in the cheaper hotels and they were fine, but this is just the icing on the cake! After spending the day bike riding and hiking to come back and enjoy a glass of wine while looking out your <span>​‌​‌”</span> ocean view window and then to top it all off...</p>
+                        <h5 class="sky-h5">JULIA ROSE</h5>
+                        <p class="testimonials-p1">From Los Angeles, California</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END / TESTIMONOALS -->

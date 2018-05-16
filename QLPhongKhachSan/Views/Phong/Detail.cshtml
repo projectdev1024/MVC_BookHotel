@@ -1,0 +1,381 @@
+﻿@model  QLPhongKhachSan.Models.Phong
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner-tems text-center">
+    <div class="container">
+        <div class="banner-content">
+            <h2>@Model.TenPhong</h2>
+            <p>Phòng đẹp nhất cái Hà Nội này</p>
+        </div>
+    </div>
+</section>
+<!-- ROOM DETAIL -->
+<section class="section-product-detail">
+    <div class="container">
+        <!-- DETAIL -->
+        <div class="product-detail margin">
+            <div class="row">
+                <div class="col-lg-9">
+                    <!-- LAGER IMGAE -->
+                    <div class="wrapper">
+                        <div class="gallery3">
+                            @foreach (var item in Model.ImagePhongs)
+                            {
+                                <div class="gallery__img-block">
+                                    <span class="">
+                                        @item.TieuDe
+                                    </span>
+                                    <img src="@item.Link" class="">
+                                </div>
+                            }
+                            <div class="gallery__controls">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / LAGER IMGAE -->
+                </div>
+                <div class="col-lg-3">
+                    <!-- FORM BOOK -->
+                    @using (Html.BeginForm("Step2", "Reservation"))
+                    {
+                        <div class="product-detail_book">
+                            <div class="product-detail_total">
+                                <img src="~/favicon.png" alt="#" class="icon-logo">
+                                <h6>ĐẶT PHÒNG NGAY</h6>
+                                <p class="price">
+                                    <span class="amout">@Model.GiaCoBan</span> /ngày
+                                </p>
+                                @Html.HiddenFor(q => q.IDPhong)
+                            </div>
+                            <div class="product-detail_form">
+                                <div class="sidebar">
+                                    @Html.Partial("Step1", new QLPhongKhachSan.Models.DatPhong())
+                                </div>
+                                <button class="btn btn-room btn-product">ĐẶT PHÒNG</button>
+                            </div>
+                        </div>
+                    }
+                    <!-- END / FORM BOOK -->
+                </div>
+            </div>
+        </div>
+        <!-- END / DETAIL -->
+        <!-- TAB -->
+        <div class="product-detail_tab">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="product-detail_tab-header">
+                        <li><a href="#overview" data-toggle="tab">THÔNG TIN CƠ BẢN</a></li>
+                        <li class="active"><a href="#amenities" data-toggle="tab">TIỆN NGHI</a></li>
+                        <li><a href="#package" data-toggle="tab">GÓI DỊCH VỤ</a></li>
+                        <li><a href="#rates" data-toggle="tab">GIÁ PHÒNG</a></li>
+                        <li><a href="#calendar" data-toggle="tab">NGÀY MỞ CỬA</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div class="product-detail_tab-content tab-content">
+                        <!-- OVERVIEW -->
+                        <div class="tab-pane fade" id="overview">
+                            <div class="product-detail_overview">
+                                <h5 class='text-uppercase'>
+                                    @Model.TenPhong
+                                </h5>
+                                <p>@Html.Raw(Model.TomTat)</p>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-4">
+                                        <h6>@Model.TenPhong</h6>
+                                        <ul>
+                                            <li>Số người tối đa: @Model.SoNguoiToiDa</li>
+                                            <li>Khung cảnh: @Model.KhungCanh</li>
+                                            <li>Diện tích: @Model.DienTich m2</li>
+                                            <li>Giường: @Model.Giuong</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                        <h6>DỊCH VỤ CƠ BẢN</h6>
+                                        <ul>
+                                            <li>Oversized work desk</li>
+                                            <li>Hairdryer</li>
+                                            <li>Iron/ironing board upon request</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END / OVERVIEW -->
+                        <!-- AMENITIES -->
+                        <div class="tab-pane fade active in" id="amenities">
+                            <div class="product-detail_amenities">
+                                <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
+                                <div class="row">
+                                    <div class="col-xs-6 col-lg-4">
+                                        <h6>TIỆN NGHI</h6>
+                                        <ul>
+                                            <li>Oversized work desk</li>
+                                            <li>Hairdryer</li>
+                                            <li>Iron/ironing board upon request</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-4">
+                                        <h6>KITCHEN ROOM</h6>
+                                        <ul>
+                                            <li>AM/FM clock radio</li>
+                                            <li>Voicemail</li>
+                                            <li>High-speed Internet access</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-4">
+                                        <h6>balcony</h6>
+                                        <ul>
+                                            <li>AM/FM clock radio</li>
+                                            <li>Voicemail</li>
+                                            <li>High-speed Internet access</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-4">
+                                        <h6>bedroom</h6>
+                                        <ul>
+                                            <li>Coffee maker</li>
+                                            <li>25 inch or larger TV</li>
+                                            <li>Cable/satellite TV channels</li>
+                                            <li>AM/FM clock radio</li>
+                                            <li>Voicemail</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-4">
+                                        <h6>bathroom</h6>
+                                        <ul>
+                                            <li>Dataport</li>
+                                            <li>Phone access fees waived</li>
+                                            <li>24-hour Concierge service</li>
+                                            <li>Private concierge</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-4">
+                                        <h6>Oversized work desk</h6>
+                                        <ul>
+                                            <li>Dataport</li>
+                                            <li>Phone access fees waived</li>
+                                            <li>24-hour Concierge service</li>
+                                            <li>Private concierge</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END / AMENITIES -->
+                        <!-- PACKAGE -->
+                        <div class="tab-pane fade" id="package">
+                            <div class="product-detail_package">
+                                @Html.Action("Index", "DichVu")
+                            </div>
+                        </div>
+                        <!-- END / PACKAGE -->
+                        <!-- RATES -->
+                        <div class="tab-pane fade" id="rates">
+                            <div class="product-detail_rates">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Thời điểm</th>
+                                            <th>Cơ bản</th>
+                                            <th>Thứ 7 - Chủ nhật</th>
+                                            <th>Tuần</th>
+                                            <th>Tháng</th>
+                                            <th>Ngày lễ</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model.GiaPhongs.Where(q => q.Active != false))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <h6>@item.TenLoai</h6>
+                                                <ul>
+                                                    <li>Ít nhất trong 3 ngày</li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">@item.GiaDem</span></p>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">@item.CuoiTuan</span></p>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">@item.Tuan</span></p>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">@item.Thang</span></p>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">@item.NgayLe</span></p>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END / RATES -->
+                        <!-- CALENDAR -->
+                        <div class="tab-pane fade" id="calendar">
+                            <div class="product-detail_calendar-wrap row">
+                                <div class="col-sm-6">
+                                    <!-- CALENDAR ITEM -->
+                                    <div class="calendar_custom">
+                                        <div class="calendar_title">
+                                            <span class="calendar_month">JUNE</span>
+                                            <span class="calendar_year">2017</span>
+                                            <a href="#" class="calendar_prev calendar_corner"><i class="ion-ios-arrow-thin-left"></i></a>
+                                        </div>
+                                        <table class="calendar_tabel">
+                                            <thead>
+                                                <tr>
+                                                    <th>Su</th>
+                                                    <th>Mo</th>
+                                                    <th>Tu</th>
+                                                    <th>We</th>
+                                                    <th>Th</th>
+                                                    <th>Fr</th>
+                                                    <th>Sa</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td></td>
+                                                <td class="apb-calendar_current-date">
+                                                    <a href="#"><small>1</small></a>
+                                                </td>
+                                                <td><a href="#"><small>2</small></a></td>
+                                                <td><a href="#"><small>3</small></a></td>
+                                                <td><a href="#"><small>4</small></a></td>
+                                                <td><a href="#"><small>5</small></a></td>
+                                                <td><a href="#"><small>6</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>7</small></a></td>
+                                                <td><a href="#"><small>8</small></a></td>
+                                                <td><a href="#"><small>9</small></a></td>
+                                                <td><a href="#"><small>10</small></a></td>
+                                                <td class="apb-calendar_current-select"><a href="#"><small>11</small></a></td>
+                                                <td class="apb-calendar_current-select"><a href="#"><small>12</small></a></td>
+                                                <td><a href="#"><small>13</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>14</small></a></td>
+                                                <td><a href="#"><small>15</small></a></td>
+                                                <td class="not-available"><a href="#"><small>16</small></a></td>
+                                                <td class="not-available"><a href="#"><small>17</small></a></td>
+                                                <td><a href="#"><small>18</small></a></td>
+                                                <td><a href="#"><small>19</small></a></td>
+                                                <td><a href="#"><small>20</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>21</small></a></td>
+                                                <td><a href="#"><small>22</small></a></td>
+                                                <td><a href="#"><small>23</small></a></td>
+                                                <td><a href="#"><small>24</small></a></td>
+                                                <td><a href="#"><small>25</small></a></td>
+                                                <td><a href="#"><small>26</small></a></td>
+                                                <td><a href="#"><small>27</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>28</small></a></td>
+                                                <td><a href="#"><small>29</small></a></td>
+                                                <td><a href="#"><small>30</small></a></td>
+                                                <td><a href="#"><small>31</small></a></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- END CALENDAR ITEM -->
+                                </div>
+                                <div class="col-sm-6">
+                                    <!-- CALENDAR ITEM -->
+                                    <div class="calendar_custom">
+                                        <div class="calendar_title">
+                                            <span class="calendar_month">JUNE</span>
+                                            <span class="calendar_year">2017</span>
+                                            <a href="#" class="calendar_next calendar_corner"><i class="ion-ios-arrow-thin-right"></i></a>
+                                        </div>
+                                        <table class="calendar_tabel">
+                                            <thead>
+                                                <tr>
+                                                    <th>Su</th>
+                                                    <th>Mo</th>
+                                                    <th>Tu</th>
+                                                    <th>We</th>
+                                                    <th>Th</th>
+                                                    <th>Fr</th>
+                                                    <th>Sa</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td></td>
+                                                <td class="apb-calendar_current-date">
+                                                    <a href="#"><small>1</small></a>
+                                                </td>
+                                                <td><a href="#"><small>2</small></a></td>
+                                                <td><a href="#"><small>3</small></a></td>
+                                                <td><a href="#"><small>4</small></a></td>
+                                                <td><a href="#"><small>5</small></a></td>
+                                                <td><a href="#"><small>6</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>7</small></a></td>
+                                                <td><a href="#"><small>8</small></a></td>
+                                                <td><a href="#"><small>9</small></a></td>
+                                                <td><a href="#"><small>10</small></a></td>
+                                                <td class="apb-calendar_current-select"><a href="#"><small>11</small></a></td>
+                                                <td class="apb-calendar_current-select"><a href="#"><small>12</small></a></td>
+                                                <td><a href="#"><small>13</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>14</small></a></td>
+                                                <td><a href="#"><small>15</small></a></td>
+                                                <td class="not-available"><a href="#"><small>16</small></a></td>
+                                                <td class="not-available"><a href="#"><small>17</small></a></td>
+                                                <td><a href="#"><small>18</small></a></td>
+                                                <td><a href="#"><small>19</small></a></td>
+                                                <td><a href="#"><small>20</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>21</small></a></td>
+                                                <td><a href="#"><small>22</small></a></td>
+                                                <td><a href="#"><small>23</small></a></td>
+                                                <td><a href="#"><small>24</small></a></td>
+                                                <td><a href="#"><small>25</small></a></td>
+                                                <td><a href="#"><small>26</small></a></td>
+                                                <td><a href="#"><small>27</small></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><small>28</small></a></td>
+                                                <td><a href="#"><small>29</small></a></td>
+                                                <td><a href="#"><small>30</small></a></td>
+                                                <td><a href="#"><small>31</small></a></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- END CALENDAR ITEM -->
+                                </div>
+                                <div class="calendar_status text-center col-sm-12">
+                                    <span>Phục vụ</span>
+                                    <span class="not-available">Ngày nghỉ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END / CALENDAR -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END / TAB -->
+    </div>
+</section>
+<!-- END / SHOP DETAIL -->

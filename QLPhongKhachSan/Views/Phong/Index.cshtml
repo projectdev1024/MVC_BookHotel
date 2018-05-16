@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.Phong>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BANNER -->
+<section class="banner-tems text-center">
+    <div class="container">
+        <div class="banner-content">
+            <h2>PHÒNG & GIÁ</h2>
+            <p>Giá tốt, phòng đẹp nhất Hà Nội</p>
+        </div>
+    </div>
+</section>
+<!-- END-BANNER -->
+<!-- BODY-ROOM-1 -->
+<section class="body-room-1 ">
+    <div class="container">
+        <div class="room-wrap-1">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <!-- ITEM -->
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="room-item-1">
+                            <h2><a href="#">@item.TenPhong</a></h2>
+                            <div class="img">
+                                <a href="@Url.Action("Detail",new { item.IDPhong })"><img src="@item.Anh" alt="#"></a>
+                            </div>
+                            <div class="content">
+                                <p>@Html.Raw(item.TomTat)</p>
+                                <ul>
+                                    <li>Số người tối đa: @item.SoNguoiToiDa</li>
+                                    <li>Khung cảnh: @item.KhungCanh</li>
+                                    <li>Diện tích: @item.DienTich m2</li>
+                                    <li>Giường: @item.Giuong</li>
+                                </ul>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">Từ <span class="amout">@item.GiaCoBan</span> /ngày</span>
+                                <a href="@Url.Action("Detail",new { item.IDPhong })" class="btn">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / ITEM -->
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END/BODY-ROOM-1-->

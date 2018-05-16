@@ -1,0 +1,31 @@
+﻿@model QLPhongKhachSan.Models.GioiThieu
+
+<!-- ABOUT-US-->
+<section class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                <div class="about-centent">
+                    <h2 class="about-title">@Model.TieuDe</h2>
+                    <div class="line"></div>
+                    <p>@Html.Raw(Model.NoiDung)</p>
+                    <a href="@Url.Action("About","Home")" class="read-more">READ MORE </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 ">
+                <div class="about-img">
+                    <div class="img-1">
+                        <img src="@Model.HinhAnh" class="img-responsive" alt="Image">
+                        <div class="img-2">
+                            <img src="@Model.HinhAnh2" class="img-responsive" alt="Image">
+                        </div>
+                        <div class="img-3">
+                            <img src="@Model.HinhAnh3" class="img-responsive" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END/ ABOUT-US-->

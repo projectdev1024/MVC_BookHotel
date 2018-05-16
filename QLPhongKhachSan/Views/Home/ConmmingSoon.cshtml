@@ -1,0 +1,34 @@
+﻿@model QLPhongKhachSan.Models.SuKien
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BODY-PAGE-conming-soon -->
+<section class="body-page page-v3" style="background: url('@Model.AnhNen') no-repeat center center">
+    <div class="container">
+        <div class="content">
+            <h1 class="h1-v3">@Model.TieuDe</h1>
+            <h3 class="h3-v3">@Model.NoiDung</h3>
+            <p class="p-v3">Sự kiện sẽ tổ chức vào ...</p>
+            <div class="wrap">
+                <div id="timer">
+                    <div id="days" class="padding">176<span>Days</span></div>
+                    <div id="hours" class="padding">22<span>Hours</span></div>
+                    <div id="minutes" class="padding">14<span>Minutes</span></div>
+                    <div id="seconds" class="padding">17<span>Seconds</span></div>
+                </div>
+            </div>
+            <p class="pp-v3">Follow Us</p>
+            <div class="v3-icon">
+                <a href="#" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#" title=""><i class="ion-social-instagram-outline"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    countdown(@Model.NgayToChuc.Value.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds)
+</script>
+<!-- END/BODY-PAGE-coming-soon -->

@@ -1,0 +1,87 @@
+﻿@model  QLPhongKhachSan.Models.DatPhong
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="banner-tems text-center">
+    <div class="container">
+        <div class="banner-content">
+            <h2>RESERVATION</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing</p>
+        </div>
+    </div>
+</section>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(q => q.IDDatPhong)
+    <!-- RESERVATION -->
+    <section class="section-reservation-page">
+        <div class="container">
+            <div class="reservation-page">
+                <!-- STEP -->
+                <div class="reservation_step">
+                    <ul>
+                        <li><a href="@Url.Action("Index")"><span>1.</span>  CHỌN PHÒNG</a></li>
+                        <li><a href="#"><span>2.</span> THÔNG TIN LIÊN HỆ</a></li>
+                        <li class="active"><a href="#"><span>3.</span> XÁC MINH EMAIL</a></li>
+                    </ul>
+                </div>
+                <!-- END / STEP -->
+                <div class="row">
+                    <!--  SIDEBAR -->
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <!-- SELECT-ROOM -->
+                            <div class="reservation-room-selected ">
+                                <!-- HEADING -->
+                                <h2 class="reservation-heading">Phòng đã chọn</h2>
+                                <!-- END / HEADING -->
+                                <div class="content-room border-top">
+                                    <div class="room">@Model.Phong.TenPhong <span>@Model.SoNgay ngày</span></div>
+                                </div>
+                            </div>
+                            <!-- END/SELECT-ROOM -->
+                        </div>
+                    </div>
+                    <!--  END/SIDEBAR -->
+                    <!-- CONTENT -->
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="reservation_content">
+                            <!-- RESERVATION ROOM -->
+                            <div class="reservation-chosen-message bg-gray text-center">
+                                <h4>xác minh Email</h4>
+                                <p>@Html.ValidationMessage("")</p>
+                                @if (string.IsNullOrWhiteSpace(Model.TrangThai))
+                                {
+                                    <p>Để hoàn thành đơn đặt phòng, vui lòng nhập mã xác mình đã được gửi vào hòm thư </p>
+                                    <p><b>@Model.Email</b></p>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(q => q.Vetify, new { @class = "form-control", placeholder = " X-X-X-X-X", style = "text-align:center;" })
+                                                <a href="@Url.Action("Finish",new { id = Model.IDDatPhong })" class="input-group-addon" title="Gửi lại mã xác minh"><i class="fa fa-refresh"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p><button class="btn btn-room">XÁC MINH</button></p>
+                                }
+                                else
+                                {
+                                    <p><a href="/" class="btn btn-room">TRANG CHỦ</a></p>
+                                }
+                            </div>
+                        </div>
+                        <!-- END / RESERVATION ROOM -->
+                    </div>
+                    <!-- END / CONTENT -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END / RESERVATION -->
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.Phong>
+
+@foreach (var item in Model)
+{
+    <!-- ITEM -->
+    <div class="reservation-room_item">
+        <h2 class="reservation-room_name"><a href="#">@item.TenPhong</a></h2>
+        <div class="reservation-room_img">
+            <a href="#"><img src="@item.Anh" alt="#" class="img-responsive"></a>
+        </div>
+        <div class="reservation-room_text">
+            <div class="reservation-room_desc">
+                <p>@Html.Raw(item.TomTat)</p>
+                <ul>
+                    <li>Số người tối đa: @item.SoNguoiToiDa</li>
+                    <li>Khung cảnh: @item.KhungCanh</li>
+                    <li>Diện tích: @item.DienTich m2</li>
+                    <li>Giường: @item.Giuong</li>
+                </ul>
+            </div>
+            <a href="#" class="reservation-room_view-more">Xem chi tiết</a>
+            <div class="clear"></div>
+            <p class="reservation-room_price">
+                <span class="reservation-room_amout">@item.GiaCoBan</span> / ngày
+            </p>
+            <button class="btn btn-room" name="@nameof(item.IDPhong)" value="@item.IDPhong">ĐẶT PHÒNG</button>
+        </div>
+    </div>
+    <!-- END / ITEM -->
+}

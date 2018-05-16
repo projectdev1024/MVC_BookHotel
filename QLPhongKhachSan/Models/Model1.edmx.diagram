@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6f752dcb5644587b551b8955e63122f" Name="Diagram1">
+        <EntityTypeShape EntityType="QLPhongKSModel.DatPhong" Width="1.5" PointX="6" PointY="4.75" />
+        <EntityTypeShape EntityType="QLPhongKSModel.DichVu" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLPhongKSModel.GiaPhong" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="QLPhongKSModel.GioiThieu" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLPhongKSModel.ImagePhong" Width="1.5" PointX="3" PointY="12.875" />
+        <EntityTypeShape EntityType="QLPhongKSModel.Phong" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="QLPhongKSModel.SuKien" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLPhongKSModel.sysdiagram" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLPhongKSModel.TaiKhoan" Width="1.5" PointX="3.75" PointY="8.25" />
+        <AssociationConnector Association="QLPhongKSModel.FK_DatPhong_Phong" />
+        <AssociationConnector Association="QLPhongKSModel.FK_DatPhong_TaiKhoan" />
+        <AssociationConnector Association="QLPhongKSModel.FK_GiaPhong_Phong" />
+        <AssociationConnector Association="QLPhongKSModel.FK_ImagePhong_Phong" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.ImagePhong>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rank)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p><active onclick="active_image('@item.IDImageHome')" class="@item.Active.ToString()"></active> <img src="@item.Link" alt="Alternate Text" /></p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rank)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","ImagePhong",new { id = item.IDImageHome})" class="btn btn-primary" title="Sửa"><i class="fa fa-pencil"></i></a>
+                <span onclick="delete_image(this,'@item.IDImageHome')" class="btn btn-warning" title="Xóa"><i class="fa fa-remove"></i></span>
+            </td>
+        </tr>
+    }
+
+</table>

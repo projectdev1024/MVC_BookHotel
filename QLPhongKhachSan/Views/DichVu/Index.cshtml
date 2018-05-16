@@ -1,0 +1,18 @@
+﻿@model  IEnumerable<QLPhongKhachSan.Models.DichVu>
+
+@foreach (var item in Model)
+{
+    <!-- ITEM package -->
+    <div class="product-package_item" style="padding: 20px; background: #f1f1f1">
+        <div class="text">
+            <h4><a href="#">@item.TenDichVu</a></h4>
+            <p>@item.MoTa</p>
+            <div class="product-package_price">
+                <p class="price">
+                    <span class="amout">@item.GiaTien</span> / Dịch vụ
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- END / ITEM package -->
+}

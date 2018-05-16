@@ -1,0 +1,53 @@
+﻿@model IEnumerable<QLPhongKhachSan.Models.SuKien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AnhNen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayToChuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@System.Web.HttpUtility.UrlDecode(item.AnhNen)" alt="Alternate Text" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayToChuc)
+            </td>
+            <td>
+                <active onclick="active('@item.IDSuKien')" class="@item.Active.ToString()"></active>
+            </td>
+            <td>
+                <a href="@Url.Action("Edit",new { id = item.IDSuKien})" class="btn btn-primary" title="Sửa"><i class="fa fa-pencil"></i></a>
+                <span onclick="delete_obj(this,'@item.IDSuKien')" class="btn btn-warning" title="Xóa"><i class="fa fa-remove"></i></span>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPhongKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QLPhongKSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DatPhongs" EntityType="QLPhongKSModel.DatPhong" />
+    <EntitySet Name="DichVus" EntityType="QLPhongKSModel.DichVu" />
+    <EntitySet Name="GiaPhongs" EntityType="QLPhongKSModel.GiaPhong" />
+    <EntitySet Name="GioiThieux" EntityType="QLPhongKSModel.GioiThieu" />
+    <EntitySet Name="ImagePhongs" EntityType="QLPhongKSModel.ImagePhong" />
+    <EntitySet Name="Phongs" EntityType="QLPhongKSModel.Phong" />
+    <EntitySet Name="SuKiens" EntityType="QLPhongKSModel.SuKien" />
+    <EntitySet Name="sysdiagrams" EntityType="QLPhongKSModel.sysdiagram" />
+    <EntitySet Name="TaiKhoans" EntityType="QLPhongKSModel.TaiKhoan" />
+    <AssociationSet Name="FK_DatPhong_Phong" Association="QLPhongKSModel.FK_DatPhong_Phong">
+      <End Role="Phong" EntitySet="Phongs" />
+      <End Role="DatPhong" EntitySet="DatPhongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DatPhong_TaiKhoan" Association="QLPhongKSModel.FK_DatPhong_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="DatPhong" EntitySet="DatPhongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GiaPhong_Phong" Association="QLPhongKSModel.FK_GiaPhong_Phong">
+      <End Role="Phong" EntitySet="Phongs" />
+      <End Role="GiaPhong" EntitySet="GiaPhongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImagePhong_Phong" Association="QLPhongKSModel.FK_ImagePhong_Phong">
+      <End Role="Phong" EntitySet="Phongs" />
+      <End Role="ImagePhong" EntitySet="ImagePhongs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DatPhong">
+    <Key>
+      <PropertyRef Name="IDDatPhong" />
+    </Key>
+    <Property Name="IDDatPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TuNgay" Type="DateTime" Precision="0" />
+    <Property Name="DenNgay" Type="DateTime" Precision="0" />
+    <Property Name="IDPhong" Type="Int32" />
+    <Property Name="SoNgay" Type="Int32" />
+    <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoNguoi" Type="Int32" />
+    <Property Name="Vetify" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HSD" Type="DateTime" Precision="3" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="XuLiLuc" Type="DateTime" Precision="3" />
+    <Property Name="NguoiXuLi" Type="Int32" />
+    <NavigationProperty Name="Phong" Relationship="QLPhongKSModel.FK_DatPhong_Phong" FromRole="DatPhong" ToRole="Phong" />
+    <NavigationProperty Name="TaiKhoan" Relationship="QLPhongKSModel.FK_DatPhong_TaiKhoan" FromRole="DatPhong" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="DichVu">
+    <Key>
+      <PropertyRef Name="IDDichVu" />
+    </Key>
+    <Property Name="IDDichVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDichVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Delete" Type="Boolean" />
+    <Property Name="MoTa" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="GiaTien" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="GiaPhong">
+    <Key>
+      <PropertyRef Name="IDGiaPhong" />
+    </Key>
+    <Property Name="IDGiaPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPhong" Type="Int32" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GiaDem" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CuoiTuan" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NgayLe" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Phong" Relationship="QLPhongKSModel.FK_GiaPhong_Phong" FromRole="GiaPhong" ToRole="Phong" />
+  </EntityType>
+  <EntityType Name="GioiThieu">
+    <Key>
+      <PropertyRef Name="IDGioiThieu" />
+    </Key>
+    <Property Name="IDGioiThieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThuTu" Type="Byte" />
+  </EntityType>
+  <EntityType Name="ImagePhong">
+    <Key>
+      <PropertyRef Name="IDImageHome" />
+    </Key>
+    <Property Name="IDImageHome" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rank" Type="Byte" />
+    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="IDPhong" Type="Int32" />
+    <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Phong" Relationship="QLPhongKSModel.FK_ImagePhong_Phong" FromRole="ImagePhong" ToRole="Phong" />
+  </EntityType>
+  <EntityType Name="Phong">
+    <Key>
+      <PropertyRef Name="IDPhong" />
+    </Key>
+    <Property Name="IDPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPhong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TomTat" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="Anh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Delete" Type="Boolean" />
+    <Property Name="GiaCoBan" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SoNguoiToiDa" Type="Int32" />
+    <Property Name="DienTich" Type="Double" />
+    <Property Name="KhungCanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Giuong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DatPhongs" Relationship="QLPhongKSModel.FK_DatPhong_Phong" FromRole="Phong" ToRole="DatPhong" />
+    <NavigationProperty Name="GiaPhongs" Relationship="QLPhongKSModel.FK_GiaPhong_Phong" FromRole="Phong" ToRole="GiaPhong" />
+    <NavigationProperty Name="ImagePhongs" Relationship="QLPhongKSModel.FK_ImagePhong_Phong" FromRole="Phong" ToRole="ImagePhong" />
+  </EntityType>
+  <EntityType Name="SuKien">
+    <Key>
+      <PropertyRef Name="IDSuKien" />
+    </Key>
+    <Property Name="IDSuKien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnhNen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayToChuc" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="IDTaiKhoan" />
+    </Key>
+    <Property Name="IDTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="POSITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DatPhongs" Relationship="QLPhongKSModel.FK_DatPhong_TaiKhoan" FromRole="TaiKhoan" ToRole="DatPhong" />
+  </EntityType>
+  <Association Name="FK_DatPhong_Phong">
+    <End Type="QLPhongKSModel.Phong" Role="Phong" Multiplicity="0..1" />
+    <End Type="QLPhongKSModel.DatPhong" Role="DatPhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="IDPhong" />
+      </Principal>
+      <Dependent Role="DatPhong">
+        <PropertyRef Name="IDPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DatPhong_TaiKhoan">
+    <End Type="QLPhongKSModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
+    <End Type="QLPhongKSModel.DatPhong" Role="DatPhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="IDTaiKhoan" />
+      </Principal>
+      <Dependent Role="DatPhong">
+        <PropertyRef Name="NguoiXuLi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GiaPhong_Phong">
+    <End Type="QLPhongKSModel.Phong" Role="Phong" Multiplicity="0..1" />
+    <End Type="QLPhongKSModel.GiaPhong" Role="GiaPhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="IDPhong" />
+      </Principal>
+      <Dependent Role="GiaPhong">
+        <PropertyRef Name="IDPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImagePhong_Phong">
+    <End Type="QLPhongKSModel.Phong" Role="Phong" Multiplicity="0..1" />
+    <End Type="QLPhongKSModel.ImagePhong" Role="ImagePhong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="IDPhong" />
+      </Principal>
+      <Dependent Role="ImagePhong">
+        <PropertyRef Name="IDPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

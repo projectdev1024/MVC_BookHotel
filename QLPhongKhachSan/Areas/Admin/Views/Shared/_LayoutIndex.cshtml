@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<h2>@ViewBag.Title</h2>
+<p>
+    <a href="@Url.Action("Edit")" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</a>
+</p>
+
+@RenderBody()
+
+<script>
+    function delete_obj(sender,id) {
+        if (confirm("Bạn có muốn xóa?")) {
+            $.ajax({
+                url : '@Url.Action("Delete")',
+                type : 'POST',
+                data: { id: id },
+                success: function (d) {
+                    if (d) {
+                        $(sender).closest('tr').remove();
+                    } else {
+                        alert("Xóa thất bại!");
+                    }
+                },
+                error: function () {
+                    alert("Xóa thất bại, có lỗi xảy ra!");
+                }
+            })
+        }
+    }
+
+    function active(id) {
+        if (confirm("Bạn có muốn thay đổi trạng thái?")) {
+            $.ajax({
+                url : '@Url.Action("Active")',
+                type : 'POST',
+                data: { id: id },
+                success: function (d) {
+                    if (d) {
+                        window.location.reload();
+                    } else {
+                        alert("Thất bại!");
+                    }
+                },
+                error: function () {
+                    alert("Thất bại, có lỗi xảy ra!");
+                }
+            })
+        }
+    }
+</script>
